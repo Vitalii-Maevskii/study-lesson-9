@@ -1,0 +1,592 @@
+/* Инструкции ======================================================*/
+
+/*
+Шрифт из плагина в VS Code
+Жмем F1 (cmd shift p)
+Пишем Google Fonts
+Выбираем import
+Пишем имя шрифта
+Убираем лишнее
+Добавляем кавычки "" и запись:
+&display=swap  - сообщит браузеру сначала использовать fallback, то есть системный шрифт (sans-serif например), а затем заменить его на реальный шрифт после его загрузки. Так можно избежать задержки в загрузке контента, когда шрифт ещё не прогрузился и улучшить производительность.
+&subset=cyrillic-ext - для кирилицы
+&display=swap&subset=cyrillic-ext - для двух параметоров одновременно
+
+*/
+/* Подключаем шрифты ======================================================*/
+
+/* google */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
+/* plugin google*/
+@import url("https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700&display=swap&subset=cyrillic-ext");
+
+
+/* local */
+@font-face {
+   font-weight: normal;
+   font-family: "FuturaDemiC";
+   font-style: normal;
+
+   font-display: swap;
+   src: url("../fonts/FuturaDemiC.woff2") format("woff2"),
+   url("../fonts/FuturaDemiC.woff") format("woff");
+}
+
+@font-face {
+   font-weight: normal;
+   font-family: "FuturaBookC";
+   font-style: normal;
+
+   font-display: swap;
+   src: url("../fonts/FuturaBookC.woff2") format("woff2"),
+   url("../fonts/FuturaBookC.woff") format("woff");
+}
+
+
+
+/* Стили обнуления ========================================================*/
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+
+   border: 0;
+}
+
+li {
+   list-style: none;
+}
+
+a,
+a:visited {
+   color: inherit;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-weight: inherit;
+   font-size: inherit;
+}
+
+img {
+   max-width: 100%;
+
+   vertical-align: top; /* убирает фантомные отступы у картинки*/
+}
+
+body {
+   line-height: 1;
+   font-family: "FuturaBookC", sans-serif;
+   color: #ececec;
+
+   background-color: rgb(160, 160, 160);
+
+
+   /* background-color: rgb(145, 145, 145); */
+   /* font-size: 16px; можно не указывать, 16px значение по умолчанию */
+}
+
+/* Основные стили ================================================================*/
+.container {
+   max-width: 1220px;
+   margin: 0 auto;
+   padding: 0 10px;
+}
+/* <header> ======================================================================*/
+.header {
+}
+.container {
+}
+.header__block p {
+   text-align: justify;
+}
+.header__block {
+   /* min-height: 400px;	 */
+   margin: 65   px 0 0 0;
+}
+.header__menu {
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 10;
+
+   width: 100%;
+
+   background-color: rgb(72, 172, 59);
+}
+.menu {
+}
+.menu__nav {
+}
+.menu__list {
+   font-size: 0;
+}
+.menu__item {
+   position: relative;
+
+   display: inline-block;
+   margin: 0 20px 0 0;
+}
+.menu__item:last-child {
+   margin: 0 0 0 0;
+}
+.menu__item > a {
+   display: inline-block;
+   padding: 20px 10px;
+
+   font-size: 24px;
+
+   border-bottom: 3px solid transparent;
+}
+.menu__item:hover .menu__sub-list {
+   display: block;
+}
+.menu__item:hover > a {
+   /* opacity: 0.6; */
+   color: rgb(15, 80, 47);
+
+   border-bottom: 3px solid rgb(15, 80, 47);
+}
+.menu__item:last-child  .menu__sub-list {
+   right: 0;
+   left: auto;
+}
+.menu__item:last-child  .menu__under-sub-list {
+   top: 0;
+   right: 105%;
+   left: auto;
+}
+.menu__item:last-child .menu__sub-item:hover > a::before {
+   content: "";
+
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   margin: 0 10px 1px 0;
+
+   background-color: rgb(102, 96, 42);
+   border-radius: 50%;
+}
+.menu__item:last-child .menu__sub-item > a::before {
+   content: "";
+
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   margin: 0 10px 1px 0;
+   /* background-color: rgb(102, 96, 42); */
+
+   border-radius: 50%;
+}
+.menu__item:last-child .menu__sub-item:hover > a::after {
+   display: none;
+}
+.menu__sub-list {
+   position: absolute;
+   top: 100%;
+   left: 0;
+
+   display: none;
+
+   font-size: 24px;
+
+   background-color: rgb(172, 161, 59);
+   border: 1px solid rgb(150, 28, 28);
+}
+.menu__sub-item:hover .menu__under-sub-list {
+   display: block;
+}
+.menu__sub-item {
+   position: relative;
+
+   margin: 0 0 15px 0;
+}
+.menu__sub-item:hover::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 100%;
+
+   display: inline-block;
+   width: 20px;
+   height: 40px;
+
+   background-color: #ffffff;
+   opacity: 0;
+}
+.menu__sub-item:hover::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   right: 100%;
+
+   display: inline-block;
+   width: 20px;
+   height: 40px;
+
+   background-color: #ffffff;
+   opacity: 0;
+}
+.menu__sub-item > a {
+   display: inline-block;
+   width: 220px;
+   padding: 5px 10px;
+}
+.menu__sub-item:last-child {
+   margin: 0 0 0 0;
+}
+.menu__sub-item:hover > a {
+   color: rgb(102, 96, 42);
+}
+.menu__sub-item:hover > a::after {
+   content: "";
+
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   margin: 0 0 1px 10px;
+
+   background-color: rgb(102, 96, 42);
+   border-radius: 50%;
+}
+.menu__under-sub-list {
+   position: absolute;
+   top: 0;
+   left: 105%;
+   z-index: 2;
+
+   display: none;
+   margin: 0 1px 0 1px;
+
+   background-color: rgb(57, 153, 160);
+}
+
+.menu__under-sub-item {
+   margin: 0 0 15px 0;
+}
+.menu__under-sub-item:last-child {
+   margin: 0;
+}
+.menu__under-sub-item a {
+   display: inline-block;
+   width: 240px;
+   padding: 5px 10px;
+}
+.menu__under-sub-item:hover > a {
+   color: rgb(50, 95, 99);
+}
+
+/* </header> ======================================================================*/
+/* <main>==========================================================================*/
+
+.main {
+}
+.main__block {
+}
+.road {
+}
+.car {
+}
+.road__block {
+   height: 1250px;
+
+   background: url("../img/1.jpg") 0 0 / cover no-repeat;
+   /* border: 10px solid black; */
+   /* border-bottom: 10px dashed white; */
+}
+
+.car__block {
+   position: relative;
+   top: -1000px;
+   /* height: 700px; */
+
+   /* border: 1px solid black; */
+}
+
+.car__body {
+   /* background-color: #0b1228; */
+}
+.car__spoiler {
+}
+.car__roof {
+   position: absolute;
+   top: 354px;
+   left: 599px;
+
+   width: 402px;
+   height: 40px;
+   margin: 0 0 0 -200px;
+
+   background: rgb(192,191,185);
+   background:    -moz-linear-gradient(45deg,  rgba(192,191,185,1) 0%, rgba(192,191,185,1) 18%, rgba(192,191,185,1) 40%, rgba(143,147,143,1) 85%, rgba(55,56,53,1) 100%);
+   background: -webkit-linear-gradient(45deg,  rgba(192,191,185,1) 0%,rgba(192,191,185,1) 18%,rgba(192,191,185,1) 40%,rgba(143,147,143,1) 85%,rgba(55,56,53,1) 100%);
+   background:         linear-gradient(45deg,  rgba(192,191,185,1) 0%,rgba(192,191,185,1) 18%,rgba(192,191,185,1) 40%,rgba(143,147,143,1) 85%,rgba(55,56,53,1) 100%);
+   /* border-radius: 19px 223px 0 0 / 75px 25px 0 0; */
+   border-radius: 23px 373px 0 0 / 75px 75px 0 0;
+   /* border-radius: 5% 16% 0 0 / 48% 48% 0 0 ; */
+}
+.car__window {
+}
+.window {
+}
+.window__rear {
+   position: absolute;
+   top: 335px;
+   left: 359px;
+
+   width: 200px;
+   height: 150px;
+   margin: 4px 0 0 0;
+   /* background-color: #ffffff; */
+
+   border-bottom: 100px solid   rgb(99, 127, 179);
+   border-left: 40px solid transparent;
+   border-radius: 147px 140px 0 0 / 38px 0 0 0;
+}
+.window__center {
+   position: absolute;
+   top: 335px;
+   left: 551px   ;
+
+   width: 324px;
+   height: 150px;
+   margin: 4px 0 0 0;
+
+   border-right: 76px solid transparent;
+   border-bottom: 100px solid   rgb(99, 127, 179);
+}
+.window__center::before {
+   content: "";
+
+   display: inline-block;
+   width: 12px;
+   height: 150px;
+
+   border-right: 4px solid transparent;
+   border-bottom: 100px solid rgb(32, 36, 43);
+}
+
+
+.window__front {
+   position: absolute;
+   top: 321px;
+   left: 872px;
+
+   padding: 90px 20px;
+}
+.window__front:hover::before {
+   content: "";
+   position: absolute;
+   top: -15px;
+   left: -9px;
+
+   display: inline-block;
+   width: 70px;
+   height: 70px;
+
+   background: url("../img/2.png") 0 0 / cover no-repeat;
+}
+.window__front-inner {
+   position: absolute;
+   top: 21px;
+   left: 25px;
+
+   width: 2px;
+   height: 150px;
+
+   background-color: #000000;
+   box-shadow: 0 0 5px 0 #6b6a6a;
+}
+.window__front-inner::before {
+   content: "";
+   position: absolute;
+   top: -5px;
+   left: -4px;
+
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+
+   background-color: #000000;
+   border-radius: 50%;
+}
+.car__gas {
+}
+.car__door {
+   position: absolute;
+   top: 488px;
+   left: 312px;
+
+   width: 780px;
+   height: 180px;
+   overflow: hidden;
+
+   background: rgb(129,131,146);
+   background:    -moz-linear-gradient(45deg,  rgba(129,131,146,1) 0%, rgba(67,72,88,1) 23%, rgba(29,33,43,1) 45%, rgba(58,62,78,1) 64%, rgba(113,117,138,1) 83%, rgba(23,24,34,1) 100%);
+   background: -webkit-linear-gradient(45deg,  rgba(129,131,146,1) 0%,rgba(67,72,88,1) 23%,rgba(29,33,43,1) 45%,rgba(58,62,78,1) 64%,rgba(113,117,138,1) 83%,rgba(23,24,34,1) 100%);
+   background:         linear-gradient(45deg,  rgba(129,131,146,1) 0%,rgba(67,72,88,1) 23%,rgba(29,33,43,1) 45%,rgba(58,62,78,1) 64%,rgba(113,117,138,1) 83%,rgba(23,24,34,1) 100%);
+   background-color: #1e202a;
+   border-radius: 62px 118px 27px 81px / 62px 185px 20px 30px;
+}
+.door {
+}
+.door__wheels {
+   width: 170px;
+   height: 100px;
+
+   background-color: rgb(31, 31, 31);
+   border-radius: 149px 149px 43px 43px / 160px 158px 39px 39px;
+}
+.door__wheels--1 {
+   position: absolute;
+   top: 55%;
+   left: 5%;
+}
+.door__wheels--2 {
+   position: absolute;
+   top: 55%;
+   left: 70%;
+}
+.car__knob::before {
+   content: "";
+   position: absolute;
+   top: 16%;
+   left: 35%;
+   z-index: 5;
+
+   width: 65px;
+   height: 10px;
+
+   background-color: #020207;
+   border-radius: 50%;
+}
+.car__knob::after {
+   content: "";
+   position: absolute;
+   /* top: 50%;
+   left: 50%; */
+   top: 10%;
+   left: 37%;
+
+   width: 30px;
+   height: 30px;
+   /* margin: -15px 0 0 -15px; */
+
+   background-color: #636568;
+   border-radius: 50%;
+}
+
+.door__design-element {
+   position: absolute;
+   top: 0;
+   left: calc(31% - 2px) ;
+   /* width: 15px; */
+
+   height: 280px;
+   /* background-color: #ffffff; */
+
+   border-right: 12px solid rgb(0, 0, 0);
+   border-bottom: 211px solid transparent;
+}
+.car__mirror {
+}
+.car__light {
+}
+.light {
+}
+.light__rear {
+   position: absolute;
+   top: 489px;
+   left: 312px;
+
+   width: 48px;
+   height: 40px;
+
+   background-color: red;
+   border-radius: 71px 0 0 0 / 68px 0 0 0;
+}
+.light__rear::after {
+}
+.light__rear:hover {
+   box-shadow: -10px -2px 15px 5px rgba(255, 0, 0, 0.651);
+}
+.light__rear:hover::after {
+}
+.light__center {
+   content: "";
+   position: absolute;
+   top: 529px;
+   left: 312px;
+
+   width: 48px;
+   height: 22px;
+
+   background-color: rgb(255, 187, 0);
+   border-radius: 0 0 0 26px / 0 0 0 29px;
+}
+.light__center:hover {
+   box-shadow: -10px 4px 15px 5px rgba(255, 238, 0, 0.651);
+}
+.light__front {
+   position: absolute;
+   top: 489px;
+   left: 990px;
+
+   width: 64px;
+   height: 45px;
+
+   background-color: #ffffff;
+   border-radius: 62px 199px 43px 81px / 62px 185px 20px 30px;
+}
+.light__front:hover {
+   box-shadow: 15px -10px 15px 3px rgba(155, 232, 255, 0.705);
+}
+.car__wheels {
+}
+.wheels {
+}
+.wheels__main {
+   width: 140px;
+   height: 140px;
+   /* background: rgb(67,72,88);
+   background:    -moz-radial-gradient(center, ellipse cover,  rgba(67,72,88,1) 12%, rgba(67,72,88,1) 12%, rgba(29,33,43,1) 30%, rgba(29,33,43,1) 30%, rgba(129,131,146,1) 61%, rgba(129,131,146,1) 61%, rgba(58,62,78,1) 65%, rgba(23,24,34,1) 86%, rgba(29,33,43,1) 97%, rgba(29,33,43,1) 97%);
+   background: -webkit-radial-gradient(center, ellipse cover,  rgba(67,72,88,1) 12%,rgba(67,72,88,1) 12%,rgba(29,33,43,1) 30%,rgba(29,33,43,1) 30%,rgba(129,131,146,1) 61%,rgba(129,131,146,1) 61%,rgba(58,62,78,1) 65%,rgba(23,24,34,1) 86%,rgba(29,33,43,1) 97%,rgba(29,33,43,1) 97%);
+   background:         radial-gradient(ellipse at center,  rgba(67,72,88,1) 12%,rgba(67,72,88,1) 12%,rgba(29,33,43,1) 30%,rgba(29,33,43,1) 30%,rgba(129,131,146,1) 61%,rgba(129,131,146,1) 61%,rgba(58,62,78,1) 65%,rgba(23,24,34,1) 86%,rgba(29,33,43,1) 97%,rgba(29,33,43,1) 97%);
+   background-color: #2a2b30;
+   border-radius: 50%; */
+
+   background: rgb(67,72,88);
+   background:    -moz-radial-gradient(center, ellipse cover,  rgba(67,72,88,1) 12%, rgba(67,72,88,1) 12%, rgba(29,33,43,1) 13%, rgba(29,33,43,1) 13%, rgba(29,33,43,1) 58%, rgba(29,33,43,1) 58%, rgba(129,131,146,1) 61%, rgba(129,131,146,1) 64%, rgba(129,131,146,1) 64%, rgba(23,24,34,1) 64%, rgba(23,24,34,1) 64%, rgba(58,62,78,1) 67%, rgba(29,33,43,1) 97%, rgba(29,33,43,1) 97%);
+   background: -webkit-radial-gradient(center, ellipse cover,  rgba(67,72,88,1) 12%,rgba(67,72,88,1) 12%,rgba(29,33,43,1) 13%,rgba(29,33,43,1) 13%,rgba(29,33,43,1) 58%,rgba(29,33,43,1) 58%,rgba(129,131,146,1) 61%,rgba(129,131,146,1) 64%,rgba(129,131,146,1) 64%,rgba(23,24,34,1) 64%,rgba(23,24,34,1) 64%,rgba(58,62,78,1) 67%,rgba(29,33,43,1) 97%,rgba(29,33,43,1) 97%);
+   background:         radial-gradient(ellipse at center,  rgba(67,72,88,1) 12%,rgba(67,72,88,1) 12%,rgba(29,33,43,1) 13%,rgba(29,33,43,1) 13%,rgba(29,33,43,1) 58%,rgba(29,33,43,1) 58%,rgba(129,131,146,1) 61%,rgba(129,131,146,1) 64%,rgba(129,131,146,1) 64%,rgba(23,24,34,1) 64%,rgba(23,24,34,1) 64%,rgba(58,62,78,1) 67%,rgba(29,33,43,1) 97%,rgba(29,33,43,1) 97%);
+   border-radius: 50%;
+}
+.wheels__rear {
+   position: absolute;
+   top: 600px;
+   left: 367px;
+}
+.wheels__front {
+   position: absolute;
+   top: 600px;
+   left: 875px;
+}
+
+
+/* </main>=======================================================================*/
+/* <footer>======================================================================*/
+
+
+
+/* </footer>======================================================================*/
